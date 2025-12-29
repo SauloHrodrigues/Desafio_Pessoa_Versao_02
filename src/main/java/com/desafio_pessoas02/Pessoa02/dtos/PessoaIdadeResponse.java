@@ -1,0 +1,14 @@
+package com.desafio_pessoas02.Pessoa02.dtos;
+
+import java.time.LocalDate;
+import java.util.List;
+
+public record PessoaIdadeResponse(
+        Long id,
+        String nome,
+        LocalDate dataDeNascimento,
+        String cpf,
+        int idade,
+        List<EnderecoRequest> enderecos
+) {
+}
