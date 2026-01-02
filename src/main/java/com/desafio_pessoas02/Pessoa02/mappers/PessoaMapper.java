@@ -1,6 +1,7 @@
 package com.desafio_pessoas02.Pessoa02.mappers;
 
 import com.desafio_pessoas02.Pessoa02.dtos.PessoaAtualizada;
+import com.desafio_pessoas02.Pessoa02.dtos.PessoaIdadeResponse;
 import com.desafio_pessoas02.Pessoa02.dtos.PessoaRequest;
 import com.desafio_pessoas02.Pessoa02.dtos.PessoaResponse;
 import com.desafio_pessoas02.Pessoa02.model.Pessoa;
@@ -9,7 +10,7 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-@Mapper
+@Mapper(imports = java.time.Period.class)
 public interface PessoaMapper {
 
     PessoaMapper INSTANCE = Mappers.getMapper(PessoaMapper.class);
@@ -25,4 +26,10 @@ public interface PessoaMapper {
     Pessoa toUpdade(@MappingTarget Pessoa pessoa, PessoaAtualizada atualizacoes);
     PessoaResponse toResponse(Pessoa pessoa);
     List<PessoaResponse> toResponse(List<Pessoa> pessoa);
+
+    @Mapping(
+            target = "idade",
+            expression = "java(Period.between(pessoa.getDataDeNascimento(), java.time.LocalDate.now()).getYears())"
+    )
+    PessoaIdadeResponse toPessoaIdadeResponse(Pessoa pessoa);
 }

@@ -17,6 +17,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -60,12 +62,15 @@ public class PessoaServiceImpl implements PessoaServiceI {
 
     @Override
     public PessoaIdadeResponse mostrarIdade(Long id) {
-        return null;
+        Pessoa pessoa = buscar(id);
+        return mapper.toPessoaIdadeResponse(pessoa);
     }
 
     @Override
     public void apagar(Long id) {
-
+        Pessoa pessoa = buscar(id);
+        enderecoService.apagar(pessoa.getEnderecos());
+        repository.delete(pessoa);
     }
 
     protected Pessoa buscar(Long id){

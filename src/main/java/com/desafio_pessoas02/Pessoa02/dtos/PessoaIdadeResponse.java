@@ -6,9 +6,8 @@ import java.util.List;
 public record PessoaIdadeResponse(
         Long id,
         String nome,
-        LocalDate dataDeNascimento,
         String cpf,
-        int idade,
-        List<EnderecoRequest> enderecos
+        LocalDate dataDeNascimento,
+        int idade
 ) {
 }
