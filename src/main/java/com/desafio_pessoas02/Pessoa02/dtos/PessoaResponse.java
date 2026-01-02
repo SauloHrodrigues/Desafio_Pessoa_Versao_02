@@ -8,6 +8,6 @@ public record PessoaResponse(
         String nome,
         LocalDate dataDeNascimento,
         String cpf,
-        List<EnderecoRequest> enderecos
+        List<EnderecoResponse> enderecos
 ) {
 }

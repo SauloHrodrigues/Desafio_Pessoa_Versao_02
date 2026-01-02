@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/pessoas")
-public class PessoaController implements PessoaSwaggerI {
+public class PessoaController  {//implements PessoaSwaggerI
     private final PessoaServiceI serviceI;
 
     @PostMapping
@@ -35,8 +35,9 @@ public class PessoaController implements PessoaSwaggerI {
     }
 
 
-    @PutMapping("/{id}")
-    public ResponseEntity<PessoaResponse> atualizarPessoa(@PathVariable Long id, @RequestBody PessoaAtualizada atualizacoes) {
+    @PatchMapping("/{id}")
+    public ResponseEntity<PessoaResponse> atualizarPessoa(@PathVariable Long id, @RequestBody @Valid PessoaAtualizada atualizacoes) {
+        System.out.println("ATUALIZA");
         return ResponseEntity.status(HttpStatus.OK).body(serviceI.atualizar(id, atualizacoes));
     }
 

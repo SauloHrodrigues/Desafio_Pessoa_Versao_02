@@ -13,6 +13,6 @@ public record EnderecoRequest(
         String cidade,
         String estado,
         String cep,
-        boolean endrecoPrincipal
+        boolean enderecoPrincipal
 ) {
 }

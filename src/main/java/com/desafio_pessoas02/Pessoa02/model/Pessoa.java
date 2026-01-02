@@ -22,7 +22,6 @@ public class Pessoa {
     private String nome;
     private LocalDate dataDeNascimento;
     private String cpf;
-    @Setter(AccessLevel.NONE)
     @OneToMany(
             mappedBy = "pessoa",
             cascade = CascadeType.ALL,
@@ -32,5 +31,16 @@ public class Pessoa {
 
     public void addEndereco(Endereco endereco){
         enderecos.add(endereco);
+    }
+
+    @Override
+    public String toString() {
+        return "Pessoa{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", dataDeNascimento=" + dataDeNascimento +
+                ", cpf='" + cpf + '\'' +
+                ", enderecos=" + enderecos +
+                '}';
     }
 }

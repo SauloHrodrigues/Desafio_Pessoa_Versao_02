@@ -21,8 +21,23 @@ public class Endereco {
     private String cidade;
     private String estado;
     private String cep;
-    private boolean endrecoPrincipal;
+    private boolean enderecoPrincipal;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pessoa_id", nullable = false)
     private Pessoa pessoa;
+
+    @Override
+    public String toString() {
+        return "Endereco{" +
+                "id=" + id +
+                ", rua='" + rua + '\'' +
+                ", numero='" + numero + '\'' +
+                ", bairro='" + bairro + '\'' +
+                ", cidade='" + cidade + '\'' +
+                ", estado='" + estado + '\'' +
+                ", cep='" + cep + '\'' +
+                ", enderecoPrincipal=" + enderecoPrincipal +
+                ", pessoa=" + pessoa +
+                '}';
+    }
 }

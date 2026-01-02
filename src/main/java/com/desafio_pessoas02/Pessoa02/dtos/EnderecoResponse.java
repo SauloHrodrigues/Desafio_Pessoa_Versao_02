@@ -9,6 +9,6 @@ public record EnderecoResponse(
         String cidade,
         String estado,
         String cep,
-        boolean endrecoPrincipal
+        boolean enderecoPrincipal
 ) {
 }

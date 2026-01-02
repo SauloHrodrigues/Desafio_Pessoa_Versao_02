@@ -7,6 +7,6 @@ public record PessoaAtualizada(
         String nome,
         LocalDate dataDeNascimento,
         String cpf,
-        List<EnderecoRequest> enderecos
+        List<EnderecoAtualizado> enderecos
 ) {
 }
