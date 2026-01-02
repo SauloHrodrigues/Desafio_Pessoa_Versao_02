@@ -2,6 +2,7 @@ package com.desafio_pessoas02.Pessoa02.service.implementacoes;
 
 import com.desafio_pessoas02.Pessoa02.dtos.EnderecoAtualizado;
 import com.desafio_pessoas02.Pessoa02.dtos.EnderecoRequest;
+import com.desafio_pessoas02.Pessoa02.exceptions.EnderecoNaoEncontradoException;
 import com.desafio_pessoas02.Pessoa02.mappers.EnderecoMapper;
 import com.desafio_pessoas02.Pessoa02.model.Endereco;
 import com.desafio_pessoas02.Pessoa02.model.Pessoa;
@@ -60,11 +61,9 @@ public class EnderecoServiceImp {
         }
     }
 
-
-
     protected Endereco buscar(Long id){
         return repository.findById(id).orElseThrow(
-                ()-> new RuntimeException("O id "+id+" não corresponde a nenhum endereço cadastrado no banco.")
+                ()-> new EnderecoNaoEncontradoException(id)
         );
     }
 }

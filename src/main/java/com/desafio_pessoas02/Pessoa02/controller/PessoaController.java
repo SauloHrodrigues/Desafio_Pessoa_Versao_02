@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/pessoas")
-public class PessoaController  {//implements PessoaSwaggerI
+public class PessoaController implements PessoaSwaggerI {
     private final PessoaServiceI serviceI;
 
     @PostMapping

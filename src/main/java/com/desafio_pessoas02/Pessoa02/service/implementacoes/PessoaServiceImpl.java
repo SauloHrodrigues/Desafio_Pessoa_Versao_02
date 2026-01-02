@@ -4,6 +4,7 @@ import com.desafio_pessoas02.Pessoa02.dtos.PessoaAtualizada;
 import com.desafio_pessoas02.Pessoa02.dtos.PessoaIdadeResponse;
 import com.desafio_pessoas02.Pessoa02.dtos.PessoaRequest;
 import com.desafio_pessoas02.Pessoa02.dtos.PessoaResponse;
+import com.desafio_pessoas02.Pessoa02.exceptions.PessoaNaoEncontradaException;
 import com.desafio_pessoas02.Pessoa02.mappers.EnderecoMapper;
 import com.desafio_pessoas02.Pessoa02.mappers.PessoaMapper;
 import com.desafio_pessoas02.Pessoa02.model.Endereco;
@@ -75,8 +76,7 @@ public class PessoaServiceImpl implements PessoaServiceI {
 
     protected Pessoa buscar(Long id){
         return repository.findById(id).orElseThrow(
-                ()-> new RuntimeException("O id "+id+" não corresponde a nenhuma pessoa" +
-                        "cadastrada no banco.")
+                ()-> new PessoaNaoEncontradaException(id)
         );
     }
 }
