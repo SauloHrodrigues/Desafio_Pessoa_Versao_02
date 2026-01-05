@@ -1,5 +1,6 @@
 package com.desafio_pessoas02.Pessoa02.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -17,7 +19,7 @@ public class Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter(AccessLevel.NONE)
+//    @Setter(AccessLevel.NONE)
     private Long id;
     private String nome;
     private LocalDate dataDeNascimento;
@@ -27,20 +29,11 @@ public class Pessoa {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+    @JsonIgnore
     private List<Endereco> enderecos = new ArrayList<>();
 
     public void addEndereco(Endereco endereco){
         enderecos.add(endereco);
     }
 
-    @Override
-    public String toString() {
-        return "Pessoa{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", dataDeNascimento=" + dataDeNascimento +
-                ", cpf='" + cpf + '\'' +
-                ", enderecos=" + enderecos +
-                '}';
-    }
 }

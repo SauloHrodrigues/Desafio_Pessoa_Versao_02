@@ -5,6 +5,9 @@ import com.desafio_pessoas02.Pessoa02.dtos.EnderecoResponse;
 import com.desafio_pessoas02.Pessoa02.model.Endereco;
 import com.desafio_pessoas02.Pessoa02.model.Pessoa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EnderecoFixture {
 
     private static final Long ID = 5L;
@@ -16,24 +19,58 @@ public class EnderecoFixture {
     private static final String CEP = "13091610";
     private static final Boolean ENDERECO_PRINCIPAL = true;
 
-    public static EnderecoRequest request(){
-        return new EnderecoRequest(
-                RUA, NUMERO, BAIRRO, CIDADE, ESTADO, CEP, ENDERECO_PRINCIPAL
-        );
+
+    public static Endereco entity() {
+        return Endereco.builder()
+                .id(ID)
+                .rua(RUA)
+                .numero(NUMERO)
+                .bairro(BAIRRO)
+                .cidade(CIDADE)
+                .estado(ESTADO)
+                .cep(CEP)
+                .enderecoPrincipal(ENDERECO_PRINCIPAL)
+                .pessoa(null)
+                .build();
     }
 
-    public static Endereco entity(Pessoa pessoa){
-        Endereco endereco = new Endereco(
-                ID, RUA, NUMERO, BAIRRO, CIDADE, ESTADO, CEP, ENDERECO_PRINCIPAL,
-                pessoa
-        );
-        return endereco;
+    public static List<EnderecoRequest> listaDeRequest(List<Endereco> enderecos) {
+        List<EnderecoRequest> requests = new ArrayList<>();
+
+        for (Endereco e : enderecos) {
+            requests.add(new EnderecoRequest(
+                    e.getRua(),
+                    e.getNumero(),
+                    e.getBairro(),
+                    e.getCidade(),
+                    e.getEstado(),
+                    e.getCep(),
+                    e.isEnderecoPrincipal()
+            ));
+        }
+
+        return requests;
     }
 
-    public static EnderecoResponse response(){
-        return new EnderecoResponse(
-                ID, RUA, NUMERO, BAIRRO, CIDADE, ESTADO, CEP, ENDERECO_PRINCIPAL
-        );
+    public static List<EnderecoResponse> listaDeResponse(List<Endereco> enderecos) {
+        List<EnderecoResponse> responses = new ArrayList<>();
+
+        for (Endereco e : enderecos) {
+            responses.add(new EnderecoResponse(
+                    e.getId(),
+                    e.getRua(),
+                    e.getNumero(),
+                    e.getBairro(),
+                    e.getCidade(),
+                    e.getEstado(),
+                    e.getCep(),
+                    e.isEnderecoPrincipal()
+            ));
+        }
+
+        return responses;
     }
 }
+
+
 

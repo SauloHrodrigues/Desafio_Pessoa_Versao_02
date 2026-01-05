@@ -34,13 +34,11 @@ public class PessoaServiceImpl implements PessoaServiceI {
     @Override
     public PessoaResponse criar(PessoaRequest dto) {
         Pessoa pessoa = mapper.toEntity(dto);
-        repository.save(pessoa);
+        pessoa = repository.save(pessoa);
 
         List<Endereco> enderecos = enderecoService.criar(dto.enderecos(),pessoa);
 
-        for(Endereco endereco:enderecos){
-            pessoa.addEndereco(endereco);
-        }
+        pessoa.setEnderecos(enderecos);
 
         return mapper.toResponse(pessoa);
     }

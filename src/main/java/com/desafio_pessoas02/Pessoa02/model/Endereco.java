@@ -1,10 +1,12 @@
 package com.desafio_pessoas02.Pessoa02.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -24,20 +26,21 @@ public class Endereco {
     private boolean enderecoPrincipal;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pessoa_id", nullable = false)
+    @JsonIgnore
     private Pessoa pessoa;
 
-    @Override
-    public String toString() {
-        return "Endereco{" +
-                "id=" + id +
-                ", rua='" + rua + '\'' +
-                ", numero='" + numero + '\'' +
-                ", bairro='" + bairro + '\'' +
-                ", cidade='" + cidade + '\'' +
-                ", estado='" + estado + '\'' +
-                ", cep='" + cep + '\'' +
-                ", enderecoPrincipal=" + enderecoPrincipal +
-                ", pessoa=" + pessoa +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Endereco{" +
+//                "id=" + id +
+//                ", rua='" + rua + '\'' +
+//                ", numero='" + numero + '\'' +
+//                ", bairro='" + bairro + '\'' +
+//                ", cidade='" + cidade + '\'' +
+//                ", estado='" + estado + '\'' +
+//                ", cep='" + cep + '\'' +
+//                ", enderecoPrincipal=" + enderecoPrincipal +
+//                ", pessoa=" + pessoa +
+//                '}';
+//    }
 }

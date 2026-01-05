@@ -24,7 +24,9 @@ public interface PessoaMapper {
     @Mapping(target = "enderecos", ignore = true)
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Pessoa toUpdade(@MappingTarget Pessoa pessoa, PessoaAtualizada atualizacoes);
+
     PessoaResponse toResponse(Pessoa pessoa);
+
     List<PessoaResponse> toResponse(List<Pessoa> pessoa);
 
     @Mapping(

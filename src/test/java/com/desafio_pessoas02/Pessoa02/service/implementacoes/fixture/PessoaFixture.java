@@ -2,6 +2,7 @@ package com.desafio_pessoas02.Pessoa02.service.implementacoes.fixture;
 
 import com.desafio_pessoas02.Pessoa02.dtos.PessoaRequest;
 import com.desafio_pessoas02.Pessoa02.dtos.PessoaResponse;
+import com.desafio_pessoas02.Pessoa02.model.Endereco;
 import com.desafio_pessoas02.Pessoa02.model.Pessoa;
 
 import java.time.LocalDate;
@@ -15,28 +16,40 @@ public class PessoaFixture {
     private static final LocalDate DATA_NASCIMENTO = LocalDate.of(1978, 9, 12);
     private static final String CPF = "22244488866";
 
-    public static PessoaRequest request(){
+
+    public static PessoaRequest request(Pessoa pessoa) {
         return new PessoaRequest(
-                NOME,
-                DATA_NASCIMENTO,
-                CPF,
-                List.of(EnderecoFixture.request())
+                pessoa.getNome(),
+                pessoa.getDataDeNascimento(),
+                pessoa.getCpf(),
+                EnderecoFixture.listaDeRequest(pessoa.getEnderecos())
         );
     }
 
-    public static Pessoa entity(){
-        Pessoa pessoa = new Pessoa(ID, NOME, DATA_NASCIMENTO, CPF, new ArrayList<>());
-        pessoa.addEndereco(EnderecoFixture.entity(pessoa));
+    public static Pessoa entity() {
+        Pessoa pessoa = Pessoa.builder()
+                .id(ID)
+                .nome(NOME)
+                .dataDeNascimento(DATA_NASCIMENTO)
+                .cpf(CPF)
+                .enderecos(new ArrayList<>())
+                .build();
+
+        Endereco endereco = EnderecoFixture.entity();
+        endereco.setPessoa(pessoa);
+        pessoa.addEndereco(endereco);
         return pessoa;
     }
 
-    public static PessoaResponse response(){
+    public static PessoaResponse response(Pessoa pessoa) {
+
         return new PessoaResponse(
-                ID,
-                NOME,
-                DATA_NASCIMENTO,
-                CPF,
-                List.of(EnderecoFixture.response())
+                pessoa.getId(),
+                pessoa.getNome(),
+                pessoa.getDataDeNascimento(),
+                pessoa.getCpf(),
+                EnderecoFixture.listaDeResponse(pessoa.getEnderecos())
+
         );
     }
 }
