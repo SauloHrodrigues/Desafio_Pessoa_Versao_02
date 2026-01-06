@@ -43,11 +43,16 @@ public class EnderecoServiceImp {
     }
 
     protected void atualiza(List<EnderecoAtualizado>atualizacoes){
-        for(EnderecoAtualizado atualizado:atualizacoes){
-            Endereco endereco = buscar(atualizado.id());
-            endereco = mapper.toUpdade(endereco,atualizado);
-            repository.save(endereco);
+        if(atualizacoes == null){
+            return;
+        } else {
+            for(EnderecoAtualizado atualizado:atualizacoes){
+                Endereco endereco = buscar(atualizado.id());
+                endereco = mapper.toUpdade(endereco,atualizado);
+                repository.save(endereco);
+            }
         }
+
     }
 
     protected void apagar(List<Endereco> enderecos){

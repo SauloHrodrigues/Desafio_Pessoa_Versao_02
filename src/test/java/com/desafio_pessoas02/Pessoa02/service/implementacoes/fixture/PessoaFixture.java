@@ -16,6 +16,15 @@ public class PessoaFixture {
     private static final LocalDate DATA_NASCIMENTO = LocalDate.of(1978, 9, 12);
     private static final String CPF = "22244488866";
 
+    public static PessoaRequest request() {
+        Pessoa pessoa = entity();
+        return new PessoaRequest(
+                pessoa.getNome(),
+                pessoa.getDataDeNascimento(),
+                pessoa.getCpf(),
+                EnderecoFixture.listaDeRequest(pessoa.getEnderecos())
+        );
+    }
 
     public static PessoaRequest request(Pessoa pessoa) {
         return new PessoaRequest(
