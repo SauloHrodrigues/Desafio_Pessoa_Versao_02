@@ -37,7 +37,6 @@ public class PessoaController implements PessoaSwaggerI {
 
     @PatchMapping("/{id}")
     public ResponseEntity<PessoaResponse> atualizarPessoa(@PathVariable Long id, @RequestBody @Valid PessoaAtualizada atualizacoes) {
-        System.out.println("ATUALIZA");
         return ResponseEntity.status(HttpStatus.OK).body(serviceI.atualizar(id, atualizacoes));
     }
 
