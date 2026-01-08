@@ -34,6 +34,14 @@ public class EnderecoFixture {
                 .build();
     }
 
+    public static EnderecoRequest request() {
+        return new EnderecoRequest(
+                RUA, NUMERO, BAIRRO, CIDADE, ESTADO, CEP, false
+        );
+
+    }
+
+
     public static List<EnderecoRequest> listaDeRequest(List<Endereco> enderecos) {
         List<EnderecoRequest> requests = new ArrayList<>();
 

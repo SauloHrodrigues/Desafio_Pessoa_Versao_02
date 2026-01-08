@@ -3,6 +3,7 @@ package com.desafio_pessoas02.Pessoa02.service.implementacoes;
 import com.desafio_pessoas02.Pessoa02.dtos.EnderecoAtualizado;
 import com.desafio_pessoas02.Pessoa02.dtos.EnderecoRequest;
 import com.desafio_pessoas02.Pessoa02.exceptions.EnderecoNaoEncontradoException;
+import com.desafio_pessoas02.Pessoa02.exceptions.ListaVaziaException;
 import com.desafio_pessoas02.Pessoa02.mappers.EnderecoMapper;
 import com.desafio_pessoas02.Pessoa02.model.Endereco;
 import com.desafio_pessoas02.Pessoa02.model.Pessoa;
@@ -25,6 +26,8 @@ public class EnderecoServiceImp {
         endereco.setPessoa(pessoa);
         return repository.save(endereco);
     }
+
+
     protected List<Endereco> criar(List<EnderecoRequest> dto, Pessoa pessoa){
         validaLista(dto);
         List<Endereco> enderecos = new ArrayList<>();
@@ -60,9 +63,11 @@ public class EnderecoServiceImp {
             repository.delete(endereco);
         }
     }
+
+
     protected void validaLista(List<EnderecoRequest>dto){
         if(dto.isEmpty()){
-            throw new RuntimeException("Lista vazia");
+            throw new ListaVaziaException("Lista vazia");
         }
     }
 
