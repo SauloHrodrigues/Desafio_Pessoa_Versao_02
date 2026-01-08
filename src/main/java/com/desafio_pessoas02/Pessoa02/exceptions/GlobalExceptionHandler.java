@@ -15,4 +15,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Object> handlerEnderecoNaoEncontradoException(EnderecoNaoEncontradoException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body( ex.getMessage());
     }
+
+    @ExceptionHandler(ListaVaziaException.class)
+    public ResponseEntity<Object> handlerListaVaziaException(ListaVaziaException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body( ex.getMessage());
+    }
 }
